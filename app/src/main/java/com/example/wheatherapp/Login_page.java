@@ -1,6 +1,5 @@
 package com.example.wheatherapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -9,33 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Splash_Screen extends AppCompatActivity {
+public class Login_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_splash_screen);
+        setContentView(R.layout.activity_login_page);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        new Thread(new Runnable() {
-       @Override
-       public void run() {
-      try {
-          Thread.sleep(1500);
-      } catch (InterruptedException e) {
-          throw new RuntimeException(e);
-      }
-           Intent intent = new Intent(Splash_Screen.this,Login_page.class);
-           startActivity(intent);
-           finish();
-       }
-   }).start();
-
-
     }
 }
