@@ -1,6 +1,8 @@
 package com.example.wheatherapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +12,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Login_page extends AppCompatActivity {
-
+TextView Sign;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,5 +24,12 @@ public class Login_page extends AppCompatActivity {
             return insets;
         });
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        Sign =findViewById(R.id.tv_sign_up);
+        Sign.setOnClickListener(click->{
+            Intent intent = new Intent(Login_page.this,Sign_page.class);
+            startActivity(intent);
+        });
+
     }
 }

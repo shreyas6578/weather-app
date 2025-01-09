@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    android:id="@+id/main"
+    >
+
+    <!-- CardView for the Login Form -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Login Text -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sign In"
+                android:gravity="center"
+                android:textSize="36sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_login_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:drawableStart="@android:drawable/ic_dialog_email"
+                android:drawablePadding="10dp"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="Enter your email address" />
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_border"
+                android:drawableStart="@android:drawable/ic_lock_lock"
+                android:drawablePadding="10dp"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:contentDescription="Enter your password" />
+
+            <!-- Login Button -->
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/purple_500"
+                android:contentDescription="Tap to log in"
+                android:text="Sign up"
+                android:textColor="@color/background_color"
+                android:textSize="16sp" />
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="20dp"
+                android:background="@color/dark_gray" />
+
+            <!-- Sign Up Option -->
+            <TextView
+                android:id="@+id/tv_sign_up"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Already have an account? Login"
+                android:gravity="center"
+                android:textColor="@color/purple_500"
+                android:textSize="16sp"
+                android:contentDescription="Tap to navigate to the login page" />
+
+            <!-- Social Login Options -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp">
+
+                <ImageButton
+                    android:id="@+id/btn_google"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edittext_border"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:contentDescription="Login with Google"
+                    android:padding="12dp"
+                    android:scaleType="centerInside" />
+
+                <ImageButton
+                    android:id="@+id/btn_facebook"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/imagebutton_border"
+                    android:src="@android:drawable/ic_menu_share"
+                    android:contentDescription="Login with Facebook"
+                    android:padding="12dp"
+                    android:scaleType="centerInside" />
+
+                <ImageButton
+                    android:id="@+id/btn_linkedin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/imagebutton_border"
+                    android:src="@android:drawable/ic_menu_manage"
+                    android:contentDescription="Login with LinkedIn"
+                    android:padding="12dp"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

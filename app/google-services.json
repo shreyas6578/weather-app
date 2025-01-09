@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "478255572185",
+    "project_id": "wheather-app-6ee78",
+    "storage_bucket": "wheather-app-6ee78.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478255572185:android:fda6dbfa4221e05ec10ac8",
+        "android_client_info": {
+          "package_name": "com.example.wheatherapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAK1GHZkWOJKU35Rp_ZaxFImIOoc-Np6e0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
