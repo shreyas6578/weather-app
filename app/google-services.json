@@ -12,7 +12,12 @@
           "package_name": "com.example.wheatherapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "478255572185-9uh6iu4rarf1bns3h7jdd488d6i82vas.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAK1GHZkWOJKU35Rp_ZaxFImIOoc-Np6e0"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478255572185-9uh6iu4rarf1bns3h7jdd488d6i82vas.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
