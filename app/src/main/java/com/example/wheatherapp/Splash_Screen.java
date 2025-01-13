@@ -26,7 +26,7 @@ public class Splash_Screen extends AppCompatActivity {
        @Override
        public void run() {
       try {
-          Thread.sleep(1500);
+          Thread.sleep(1000);
       } catch (InterruptedException e) {
           throw new RuntimeException(e);
       }

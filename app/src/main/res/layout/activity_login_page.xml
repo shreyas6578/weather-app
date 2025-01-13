@@ -31,52 +31,66 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:text="Login"
                 android:textAlignment="center"
+                android:textColor="@color/black"
                 android:textSize="36sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:textColor="@color/black" />
+                android:textStyle="bold" />
 
             <EditText
                 android:id="@+id/et_login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/edittext_border"
+                android:contentDescription="Enter your email address"
                 android:drawableStart="@android:drawable/ic_dialog_email"
                 android:drawablePadding="10dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:padding="12dp"
-                android:textColor="@color/black"
-                android:layout_marginBottom="10dp"
-                android:contentDescription="Enter your email address" />
+                android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/et_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/edittext_border"
+                android:contentDescription="Enter your password"
                 android:drawableStart="@android:drawable/ic_lock_lock"
                 android:drawablePadding="10dp"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="12dp"
-                android:textColor="@color/black"
-                android:contentDescription="Enter your password" />
+                android:textColor="@color/black" />
 
-
-            <TextView
-                android:id="@+id/tv_forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <LinearLayout
+                android:layout_width="336dp"
+                android:layout_height="27dp"
                 android:layout_marginTop="10dp"
-                android:text="Forgot Password?"
-                android:textColor="@color/purple_500"
-                android:textSize="14sp"
-                android:layout_gravity="end" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <!-- Login Button -->
+                <CheckBox
+                    android:id="@+id/save"
+                    android:layout_width="121dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Save Login" />
+
+                <TextView
+                    android:id="@+id/tv_forgot_password"
+                    android:layout_width="123dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_marginLeft="85dp"
+                    android:text="Forgot Password?"
+                    android:textColor="@color/purple_500"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
@@ -100,27 +114,28 @@
                 android:id="@+id/tv_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="Tap to navigate to the sign-up page"
                 android:text="Don't have an account? Sign Up"
                 android:textAlignment="center"
                 android:textColor="@color/purple_500"
-                android:textSize="16sp"
-                android:contentDescription="Tap to navigate to the sign-up page" />
+                android:textSize="16sp" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:layout_marginTop="20dp">
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btn_google"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_border"
-                    android:src="@android:drawable/ic_menu_search"
                     android:contentDescription="Login with Google"
                     android:padding="8dp"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerInside"
+                    android:src="@android:drawable/ic_menu_search" />
 
                 <ImageButton
                     android:id="@+id/btn_facebook"
@@ -128,10 +143,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/imagebutton_border"
-                    android:src="@android:drawable/ic_menu_share"
                     android:contentDescription="Login with Facebook"
                     android:padding="8dp"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerInside"
+                    android:src="@android:drawable/ic_menu_share" />
 
                 <ImageButton
                     android:id="@+id/btn_linkedin"
@@ -139,12 +154,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:background="@drawable/imagebutton_border"
-                    android:src="@android:drawable/ic_menu_manage"
                     android:contentDescription="Login with LinkedIn"
                     android:padding="8dp"
-                    android:scaleType="centerInside" />
+                    android:scaleType="centerInside"
+                    android:src="@android:drawable/ic_menu_manage" />
 
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"></LinearLayout>
 
         </LinearLayout>
 
