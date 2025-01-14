@@ -10,4 +10,19 @@
     tools:context=".MainActivity">
 
 
+    <SearchView
+        android:id="@+id/serach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="24dp"
+        android:queryHint="Enter city name"
+        android:layout_marginRight="8dp"
+        android:focusable="auto" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="166dp"
+        android:text="TextView" />
 </LinearLayout>
