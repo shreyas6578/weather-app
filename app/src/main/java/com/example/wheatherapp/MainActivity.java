@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import retrofit2.Call;
@@ -40,7 +41,7 @@ Api_call apiCall;
             return insets;
         });
 
-
+LinearLayout linearLayout = findViewById(R.id.main);
         searchView = findViewById(R.id.serach);
         resultTextView = findViewById(R.id.textView);
 
@@ -49,7 +50,6 @@ Api_call apiCall;
                 .baseUrl("https://api.openweathermap.org/data/2.5/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-
         apiCall = retrofit.create(Api_call.class);
 
         // Set up SearchView listener
@@ -79,8 +79,10 @@ Api_call apiCall;
             public void onResponse(@NonNull Call<Root> call, @NonNull Response<Root> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     Root weatherData = response.body();
+                    double temp = weatherData.main.temp - 273.15;
+
                     String result = "City: " + weatherData.name + "\n" +
-                            "Temperature: " + weatherData.main.temp + "°C\n" +
+                            "Temperature: " + temp + "°C\n" +
                             "Weather: " + weatherData.weather.get(0).description
                             +"feels_like"+
                             "\n"+weatherData.main.feels_like;
