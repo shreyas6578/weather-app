@@ -33,29 +33,29 @@ android {
 dependencies {
 
     implementation libs.play.services.maps
+    implementation libs.gridlayout
     dependencies {
         // Import the BoM for the Firebase platform
-        implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+        implementation(libs.firebase.bom)
 
         // Add the dependency for the Firebase Authentication library
         // When using the BoM, you don't specify versions in Firebase library dependencies
-        implementation("com.google.firebase:firebase-auth")
+        implementation(libs.com.google.firebase.firebase.auth)
     }
     dependencies {
         // Import the BoM for the Firebase platform
         implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
 
-        // Add the dependency for the Firebase Authentication library
-        // When using the BoM, you don't specify versions in Firebase library dependencies
-        implementation("com.google.firebase:firebase-auth")
+        implementation(libs.com.google.firebase.firebase.auth2)
 
         // Also add the dependency for the Google Play services library and specify its version
-        implementation("com.google.android.gms:play-services-auth:21.3.0")
+        implementation(libs.play.services.auth)
     }
-    implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.firebase.analytics)
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation libs.retrofit
     implementation libs.converter.gson
+    implementation libs.lottie
 
     implementation libs.material.v1100
     implementation libs.recyclerview
