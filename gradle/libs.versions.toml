@@ -20,6 +20,7 @@ firebaseDatabase = "21.0.0"
 firebaseAuth = "23.1.0"
 playServicesMaps = "19.0.0"
 gridlayout = "1.0.0"
+legacySupportV4 = "1.0.0"
 
 [libraries]
 com-google-firebase-firebase-auth = { module = "com.google.firebase:firebase-auth" }
@@ -46,6 +47,7 @@ firebase-database = { group = "com.google.firebase", name = "firebase-database",
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth", version.ref = "firebaseAuth" }
 play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "playServicesMaps" }
 gridlayout = { group = "androidx.gridlayout", name = "gridlayout", version.ref = "gridlayout" }
+legacy-support-v4 = { group = "androidx.legacy", name = "legacy-support-v4", version.ref = "legacySupportV4" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
