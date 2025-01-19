@@ -94,7 +94,7 @@ FirebaseAuth mAuth;
                                 finish();
                             } else {
                                 Log.w(TAG, "signInWithEmail:failure", task.getException());
-                                Toast.makeText(Login_page.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login_page.this, "Authenticatichon failed.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });

@@ -2,12 +2,11 @@ package com.example.wheatherapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -18,7 +17,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,9 +34,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 SearchView searchView;
-TextView  loctaions, temps,feels, high_temp, low_temp,sunrises,sunsets;
+TextView  loctaions, temps,feels, high_temp, low_temp,sunrises,sunsets,user_name ;
 Api_call apiCall;
 SharedPreferences sharedPreferences;
+FirebaseAuth firebaseAuth;
+ImageButton setting;
     LinearLayout linearLayout;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -46,9 +51,12 @@ SharedPreferences sharedPreferences;
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        sharedPreferences = getSharedPreferences("WeatherAppPrefs", Context.MODE_PRIVATE);
+        WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
 
-        temps = findViewById(R.id.temps);
+        sharedPreferences = getSharedPreferences("WeatherAppPrefs", Context.MODE_PRIVATE);
+        firebaseAuth = FirebaseAuth.getInstance();
+       user_name = findViewById(R.id.app_title);
+       temps = findViewById(R.id.temps);
  linearLayout = findViewById(R.id.main);
  searchView = findViewById(R.id.search);
  feels =findViewById(R.id.feeling);
@@ -57,8 +65,23 @@ SharedPreferences sharedPreferences;
  sunrises = findViewById(R.id.sunrise);
  sunsets = findViewById(R.id.sunset);
  loctaions =findViewById(R.id.location);
+setting = findViewById(R.id.menu_button);
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                String userName = userEmail.replace("@gmail.com", ""); // Remove "@gmail.com"
+                user_name.setText(userName);
+            }
+        } else {
+            user_name.setText("No user is signed in.");
+        }
+setting.setOnClickListener(v->
+{
+    Intent intent = new Intent(MainActivity.this,ActivityMenu.class);
+    startActivity(intent);
 
-
+});
         // Set up Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.openweathermap.org/data/2.5/")
