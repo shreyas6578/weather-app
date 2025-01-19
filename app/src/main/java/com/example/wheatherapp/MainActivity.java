@@ -34,7 +34,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 SearchView searchView;
-TextView  loctaions, temps,feels, high_temp, low_temp,sunrises,sunsets,user_name ;
+TextView locations, temps,feels, high_temp, low_temp,sunrises,sunsets,user_name ;
 Api_call apiCall;
 SharedPreferences sharedPreferences;
 FirebaseAuth firebaseAuth;
@@ -64,7 +64,7 @@ ImageButton setting;
  high_temp = findViewById(R.id.high_temp);
  sunrises = findViewById(R.id.sunrise);
  sunsets = findViewById(R.id.sunset);
- loctaions =findViewById(R.id.location);
+ locations =findViewById(R.id.location);
 setting = findViewById(R.id.menu_button);
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
@@ -130,7 +130,7 @@ setting.setOnClickListener(v->
                     double feelings = weatherData.main.feels_like-273.15;
                     feels.setText("Feeling Temperature" + "\n" + String.format("%.2f°C", feelings));
                     String location = weatherData.name;
-                    loctaions.setText(location);
+                    locations.setText(location);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("location", city);
                     editor.apply();
