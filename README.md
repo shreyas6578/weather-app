@@ -85,7 +85,6 @@ Here are the key dependencies used in the project:
   - JUnit for unit testing
   - Espresso for UI testing
 
-You can find the dependencies in the `build.gradle` files of the project.
 
 ## Code Structure
 
@@ -97,10 +96,3 @@ You can find the dependencies in the `build.gradle` files of the project.
 - **Root.java**: Data model for parsing the weather API response.
 
 
-## License
-
-This project is licensed under the MIT License.
-
----
-
-This should give a comprehensive view of your Weather App project, from setup to dependencies. Would you like to add or modify any details in the `README.md`?
