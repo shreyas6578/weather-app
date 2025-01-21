@@ -46,7 +46,7 @@ dependencies {
     dependencies {
         // Import the BoM for the Firebase platform
         implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
-
+        implementation 'com.google.firebase:firebase-storage:20.2.1'
         implementation(libs.com.google.firebase.firebase.auth2)
 
         // Also add the dependency for the Google Play services library and specify its version

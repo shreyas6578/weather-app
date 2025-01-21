@@ -19,13 +19,6 @@
         android:padding="16dp">
 
         <!-- Menu Button -->
-        <ImageButton
-            android:id="@+id/menu_button"
-            android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Menu Button"
-            android:src="@drawable/menu" />
 
         <!-- App Title -->
         <TextView
@@ -89,6 +82,41 @@
                     <!-- Text Below Lottie Animation -->
                     <TextView
                         android:id="@+id/location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Current Temp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
+
+                    <!-- Lottie Animation for Current Temp -->
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        app:lottie_rawRes="@raw/location_cord"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        android:contentDescription="Current temperature animation" />
+
+                    <!-- Text Below Lottie Animation -->
+                    <TextView
+                        android:id="@+id/location_coordinate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -314,6 +342,76 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Low Temp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/Pressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/Humidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/Visibility"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/Wind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/black"
+                        android:paddingTop="8dp" />
+
+                    <TextView
+                        android:id="@+id/CloudCover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text=""
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"

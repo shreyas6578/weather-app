@@ -2,14 +2,13 @@ package com.example.wheatherapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import retrofit2.Call;
 
 import androidx.activity.EdgeToEdge;
@@ -25,7 +24,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,11 +35,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 SearchView searchView;
-TextView locations, temps,feels, high_temp, low_temp,sunrises,sunsets,user_name ;
+TextView locations, temps,feels, high_temp, low_temp,sunrises,sunsets,user_name,location_cord,pressureText, humidityText, visibilityText, windText, cloudCoverText;
 Api_call apiCall;
 SharedPreferences sharedPreferences;
 FirebaseAuth firebaseAuth;
-ImageButton setting;
     LinearLayout linearLayout;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -65,7 +65,12 @@ ImageButton setting;
  sunrises = findViewById(R.id.sunrise);
  sunsets = findViewById(R.id.sunset);
  locations =findViewById(R.id.location);
-setting = findViewById(R.id.menu_button);
+location_cord =findViewById(R.id.location_coordinate);
+        pressureText = findViewById(R.id.Pressure);
+        humidityText = findViewById(R.id.Humidity);
+        visibilityText = findViewById(R.id.Visibility);
+        windText = findViewById(R.id.Wind);
+        cloudCoverText = findViewById(R.id.CloudCover);
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
@@ -76,12 +81,7 @@ setting = findViewById(R.id.menu_button);
         } else {
             user_name.setText("No user is signed in.");
         }
-setting.setOnClickListener(v->
-{
-    Intent intent = new Intent(MainActivity.this,ActivityMenu.class);
-    startActivity(intent);
 
-});
         // Set up Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.openweathermap.org/data/2.5/")
@@ -104,13 +104,10 @@ setting.setOnClickListener(v->
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                // Optional: Handle text change
                 return false;
             }
         });
     }
-
-    // Fetch weather data using Retrofit
     private void fetchWeatherData(String city) {
         String apiKey = "a4988bdf68ba20c14a4dd36f38dd498d"; // Replace with your OpenWeatherMap API key
 
@@ -129,15 +126,27 @@ setting.setOnClickListener(v->
                     high_temp.setText("Today's High Temperature" + "\n" + String.format("%.2f°C", high_temps));
                     double feelings = weatherData.main.feels_like-273.15;
                     feels.setText("Feeling Temperature" + "\n" + String.format("%.2f°C", feelings));
-                    String location = weatherData.name;
-                    locations.setText(location);
+                    String country = weatherData.sys.country;
+                    String citys = weatherData.name;
+                    locations.setText(country+","+citys);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString("location", city);
                     editor.apply();
-
                     long sunriseTime = weatherData.sys.sunrise * 1000L;  // Convert to milliseconds
                     long sunsetTime = weatherData.sys.sunset * 1000L;
-
+                    double Latitude = weatherData.coord.lat;
+                    double  Longitude = weatherData.coord.lon;
+                    String pressure = weatherData.main.pressure + " hPa";
+                    String humidity = weatherData.main.humidity + "%";
+                    String visibility = (weatherData.visibility / 1000.0) + " km";
+                    String wind = weatherData.wind.speed + " m/s from " + weatherData.wind.deg + "°";
+                    String cloudCover = weatherData.clouds.all + "%";
+                    pressureText.setText("Pressure: " + pressure);
+                    humidityText.setText("Humidity: " + humidity);
+                    visibilityText.setText("Visibility: " + visibility);
+                    windText.setText("Wind: " + wind);
+                    cloudCoverText.setText("Cloud Cover: " + cloudCover);
+                    location_cord.setText("Latitude:"+Latitude+"\n"+"Longitude:"+Longitude);
                     SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
                     Date sunriseDate = new Date(sunriseTime);
                     Date sunsetDate = new Date(sunsetTime);
@@ -146,51 +155,52 @@ setting.setOnClickListener(v->
 
                     // Convert to milliseconds
                     String weatherMain = weatherData.weather.get(0).main;
-                    if ("Clear".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.clear_sky); // Path to clear sky image
-                    } else if ("Clouds".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.colud_background); // Path to cloudy image
-                    } else if ("Rain".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.rain_background); // Path to rain image
-                    } else if ("Drizzle".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.drizzle); // Path to drizzle image
-                    } else if ("Thunderstorm".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.thunderstorm); // Path to thunderstorm image
-                    } else if ("Snow".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.snow_background); // Path to snow image
-                    } else if ("Mist".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.mist); // Path to mist image
-                    } else if ("Haze".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.haze); // Path to haze image
-                    } else if ("Fog".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.fog); // Path to fog image
-                    } else if ("Smoke".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.smoke); // Path to smoke image
-                    } else if ("Dust".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.dust); // Path to dust image
-                    } else if ("Sand".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.sand); // Path to sand image
-                    } else if ("Ash".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.ash); // Path to ash image
-                    } else if ("Squall".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.squall); // Path to squall image
-                    } else if ("Tornado".equals(weatherMain)) {
-                        linearLayout.setBackgroundResource(R.drawable.tornado); // Path to tornado image
-                    } else {
-                        linearLayout.setBackgroundColor(255); // Default image for unknown weather
-                    }
+                    setWeatherBackground(weatherMain);
 
+                    if (response.code() == 404) {
+                        Toast.makeText(MainActivity.this, "City not found. Please try again.", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
             @SuppressLint("SetTextI18n")
             @Override
             public void onFailure(@NonNull Call<Root> call, @NonNull Throwable t) {
+                Toast.makeText(MainActivity.this, "Failed to fetch weather data. Please check your connection.", Toast.LENGTH_SHORT).show();
+
             }
         });
-}
-}
 
+}
+    private void setWeatherBackground(String weatherMain) {
+        // Define a HashMap to map weather conditions to background resources
+        Map<String, Integer> weatherBackgroundMap = new HashMap<>();
+        weatherBackgroundMap.put("Clear", R.drawable.clear_sky);
+        weatherBackgroundMap.put("Clouds", R.drawable.colud_background);
+        weatherBackgroundMap.put("Rain", R.drawable.rain_background);
+        weatherBackgroundMap.put("Drizzle", R.drawable.drizzle);
+        weatherBackgroundMap.put("Thunderstorm", R.drawable.thunderstorm);
+        weatherBackgroundMap.put("Snow", R.drawable.snow_background);
+        weatherBackgroundMap.put("Mist", R.drawable.mist);
+        weatherBackgroundMap.put("Haze", R.drawable.haze);
+        weatherBackgroundMap.put("Fog", R.drawable.fog);
+        weatherBackgroundMap.put("Smoke", R.drawable.smoke);
+        weatherBackgroundMap.put("Dust", R.drawable.dust);
+        weatherBackgroundMap.put("Sand", R.drawable.sand);
+        weatherBackgroundMap.put("Ash", R.drawable.ash);
+        weatherBackgroundMap.put("Squall", R.drawable.squall);
+        weatherBackgroundMap.put("Tornado", R.drawable.tornado);
+
+        // Get the background resource from the map, or use a default color if not found
+        Integer backgroundResource = weatherBackgroundMap.getOrDefault(weatherMain, null);
+        if (backgroundResource != null) {
+            linearLayout.setBackgroundResource(backgroundResource);
+        } else {
+            linearLayout.setBackgroundColor(255); // Default color for unknown weather
+        }
+    }
+}
+//https://api.openweathermap.org/data/2.5/weather?q=thane&appid=a4988bdf68ba20c14a4dd36f38dd498d
 
 
 
