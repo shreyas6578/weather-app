@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/splash"
-    android:id="@+id/main"
-    >
+    android:id="@+id/main">
 
     <!-- CardView for the Login Form -->
     <androidx.cardview.widget.CardView
@@ -66,14 +65,14 @@
                 android:contentDescription="Enter your password" />
 
             <!-- Login Button -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/purple_500"
                 android:contentDescription="Tap to log in"
-                android:text="Sign up"
+                android:text="Sign Up"
                 android:textColor="@color/background_color"
                 android:textSize="16sp" />
 
@@ -89,7 +88,7 @@
                 android:id="@+id/tv_sign_up"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? Login"
+                android:text="Already have an account? Log in"
                 android:gravity="center"
                 android:textColor="@color/purple_500"
                 android:textSize="16sp"

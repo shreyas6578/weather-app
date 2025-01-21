@@ -3,11 +3,11 @@ package com.example.wheatherapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.activity.EdgeToEdge;
+import android.app.ProgressDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,11 +19,11 @@ public class Sign_page extends AppCompatActivity {
     private TextView login;
     private EditText email, password;
     private FirebaseAuth mAuth;
-ImageButton signUpButton;
+    Button signUpButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_page);
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -35,11 +35,21 @@ ImageButton signUpButton;
         email = findViewById(R.id.et_login_email);
         password = findViewById(R.id.et_login_password);
         login = findViewById(R.id.tv_sign_up);
-       signUpButton = findViewById(R.id.btn_google);
+        signUpButton = findViewById(R.id.btn_login);
 
         // Navigate to Login page
         login.setOnClickListener(v -> startActivity(new Intent(Sign_page.this, Login_page.class)));
 
+        // Handle Sign-up Button Click
+        signUpButton.setOnClickListener(v -> handleEmailPasswordSignUp());
+    }
+
+    private boolean isPasswordStrong(String password) {
+        return password.length() >= 8 &&
+                password.matches(".*[A-Z].*") && // Contains at least one uppercase letter
+                password.matches(".*[a-z].*") && // Contains at least one lowercase letter
+                password.matches(".*[0-9].*") && // Contains at least one digit
+                password.matches(".*[!@#$%^&*(),.?\":{}|<>].*"); // Contains at least one special character
     }
 
     private void handleEmailPasswordSignUp() {
@@ -51,17 +61,28 @@ ImageButton signUpButton;
             return;
         }
 
+        if (!isPasswordStrong(passwordText)) {
+            Toast.makeText(this, "Password is too weak. It should be at least 8 characters long, with uppercase, lowercase, numbers, and special characters.", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        // Show progress dialog while registering
+        ProgressDialog progressDialog = new ProgressDialog(Sign_page.this);
+        progressDialog.setMessage("Registering...");
+        progressDialog.show();
+
         mAuth.createUserWithEmailAndPassword(emailText, passwordText)
                 .addOnCompleteListener(this, task -> {
+                    progressDialog.dismiss();  // Dismiss progress dialog
                     if (task.isSuccessful()) {
-                        // Registration successful
                         FirebaseUser user = mAuth.getCurrentUser();
                         Log.d(TAG, "User registered: " + (user != null ? user.getEmail() : "Unknown"));
                         Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
+                        email.setText("");  // Clear email field
+                        password.setText("");  // Clear password field
                         startActivity(new Intent(Sign_page.this, Login_page.class));
                         finish();
                     } else {
-                        // Handle errors during registration
                         handleFirebaseError(task.getException());
                     }
                 });
