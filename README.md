@@ -1,6 +1,4 @@
-Here's a sample `README.md` page for your Weather App project, incorporating the information you've provided. This readme gives a clear overview of the app, its features, dependencies, and setup instructions.
 
----
 
 # Weather App
 
