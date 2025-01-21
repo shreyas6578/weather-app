@@ -45,11 +45,7 @@ public class Sign_page extends AppCompatActivity {
     }
 
     private boolean isPasswordStrong(String password) {
-        return password.length() >= 8 &&
-                password.matches(".*[A-Z].*") && // Contains at least one uppercase letter
-                password.matches(".*[a-z].*") && // Contains at least one lowercase letter
-                password.matches(".*[0-9].*") && // Contains at least one digit
-                password.matches(".*[!@#$%^&*(),.?\":{}|<>].*"); // Contains at least one special character
+        return password.length() >= 8 ;
     }
 
     private void handleEmailPasswordSignUp() {
@@ -62,7 +58,7 @@ public class Sign_page extends AppCompatActivity {
         }
 
         if (!isPasswordStrong(passwordText)) {
-            Toast.makeText(this, "Password is too weak. It should be at least 8 characters long, with uppercase, lowercase, numbers, and special characters.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Password is too weak. It should be at least 8 characters long", Toast.LENGTH_LONG).show();
             return;
         }
 
